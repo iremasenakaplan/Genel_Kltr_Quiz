@@ -533,7 +533,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: fbe3c09b43ce4304e86e7496c81bb9ed, type: 3}
-    m_FontSize: 40
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1513,7 +1513,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1310876239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2081163113}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: yanlisButonaBasildi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1310876239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,7 +1736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1498354873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2081163113}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: dogruButonaBasildi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1498354873
 MonoBehaviour:
   m_ObjectHideFlags: 0

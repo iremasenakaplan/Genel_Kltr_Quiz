@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq; // liste ile ilgili çalışmaları yapabilmek için
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -34,5 +35,37 @@ public class GameManager : MonoBehaviour
         soruText.text=gecerliSoru.question;
     }
 
-   
+    IEnumerator SorularArasiBekleRoutine()
+    {
+        cevaplanmayanQuestion.Remove(gecerliSoru);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+   public void dogruButonaBasildi()
+   {
+        if(gecerliSoru.dogrumu)
+        {
+            Debug.Log("true answer");
+        }else
+        {
+            Debug.Log("false answer");
+        }
+
+        StartCoroutine(SorularArasiBekleRoutine());
+   }
+
+   public void yanlisButonaBasildi()
+   {
+        if(!gecerliSoru.dogrumu)
+        {
+            Debug.Log("true answer");
+        }else
+        {
+            Debug.Log("false answer");
+        }
+
+        StartCoroutine(SorularArasiBekleRoutine());
+   }
 }
