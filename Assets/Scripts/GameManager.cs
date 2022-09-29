@@ -22,12 +22,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject dogruButon, yanlisButon;
 
+    int dogruAdet, yanlisAdet;
+
     void Start()
     {
         if (cevaplanmayanQuestion==null || cevaplanmayanQuestion.Count==0)
         {
             cevaplanmayanQuestion=sorular.ToList<Question>();
         }
+        
+        yanlisAdet=0;
+        dogruAdet=0;
 
         RastGeleSoruSec();
     
@@ -35,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     void RastGeleSoruSec()
     {
+        yanlisButon.GetComponent<RectTransform>().DOLocalMoveX(-124.39f, 0.5f);
+        dogruButon.GetComponent<RectTransform>().DOLocalMoveX(123.39f, 0.5f);
+
         int randomSoruIndex=Random.Range(0,cevaplanmayanQuestion.Count);
         gecerliSoru=cevaplanmayanQuestion[randomSoruIndex];
 
@@ -55,7 +63,15 @@ public class GameManager : MonoBehaviour
     {
         cevaplanmayanQuestion.Remove(gecerliSoru);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        if(cevaplanmayanQuestion.Count<=0)
+        {
+            Debug.Log(dogruAdet);
+            Debug.Log(yanlisAdet);
+        }else 
+        {
+            RastGeleSoruSec();
+        }
 
     }
 
@@ -63,10 +79,10 @@ public class GameManager : MonoBehaviour
    {
         if(gecerliSoru.dogrumu)
         {
-            Debug.Log("true answer");
+            dogruAdet++;
         }else
         {
-            Debug.Log("false answer");
+            yanlisAdet++;
         }
         
         yanlisButon.GetComponent<RectTransform>().DOLocalMoveX(1000f,0.5f);
@@ -77,10 +93,10 @@ public class GameManager : MonoBehaviour
    {
         if(!gecerliSoru.dogrumu)
         {
-            Debug.Log("true answer");
+            dogruAdet++;
         }else
         {
-            Debug.Log("false answer");
+            yanlisAdet++;
         }
         dogruButon.GetComponent<RectTransform>().DOLocalMoveX(-1000f,0.5f);
         StartCoroutine(SorularArasiBekleRoutine());
