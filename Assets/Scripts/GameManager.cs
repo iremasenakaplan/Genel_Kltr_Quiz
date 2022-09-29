@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject dogruButon, yanlisButon;
 
+    [SerializeField]
+    private GameObject sonucPaneli;
+
+    SonucManager sonucManager;
+
     int dogruAdet, yanlisAdet;
 
     void Start()
@@ -66,8 +71,11 @@ public class GameManager : MonoBehaviour
         
         if(cevaplanmayanQuestion.Count<=0)
         {
-            Debug.Log(dogruAdet);
-            Debug.Log(yanlisAdet);
+           sonucPaneli.SetActive(true);
+
+           sonucManager=Object.FindObjectOfType<SonucManager>();
+           sonucManager.SonuclariYazdir(dogruAdet,yanlisAdet);
+
         }else 
         {
             RastGeleSoruSec();
