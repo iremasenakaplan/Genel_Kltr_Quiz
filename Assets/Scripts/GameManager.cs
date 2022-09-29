@@ -4,7 +4,7 @@ using System.Linq; // liste ile ilgili çalışmaları yapabilmek için
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Text soruText;
+
+    [SerializeField]
+    private Text dogruCevapText, yanlisCevapText;
+
+    [SerializeField]
+    private GameObject dogruButon, yanlisButon;
 
     void Start()
     {
@@ -33,6 +39,16 @@ public class GameManager : MonoBehaviour
         gecerliSoru=cevaplanmayanQuestion[randomSoruIndex];
 
         soruText.text=gecerliSoru.question;
+
+        if(gecerliSoru.dogrumu)
+        {
+            dogruCevapText.text="Dogru cevapladiniz";
+            yanlisCevapText.text="Yanlis cevapladiniz";
+        }else
+        {
+            dogruCevapText.text="Yanlis cevapladiniz";
+            yanlisCevapText.text="Dogru cevapladiniz";
+        }
     }
 
     IEnumerator SorularArasiBekleRoutine()
@@ -52,7 +68,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("false answer");
         }
-
+        
+        yanlisButon.GetComponent<RectTransform>().DOLocalMoveX(1000f,0.5f);
         StartCoroutine(SorularArasiBekleRoutine());
    }
 
@@ -65,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("false answer");
         }
-
+        dogruButon.GetComponent<RectTransform>().DOLocalMoveX(-1000f,0.5f);
         StartCoroutine(SorularArasiBekleRoutine());
    }
 }
